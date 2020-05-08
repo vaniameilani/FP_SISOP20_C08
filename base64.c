@@ -59,6 +59,7 @@ int encode(unsigned char in[], unsigned char out[], int len, int newline_flag, i
 }
 
 int main(int argc, char *argv[]){
+   int main(int argc, char *argv[]){
    int inputfile;
       if((inputfile = open(argv[1],O_RDONLY)) < 0){
          close(inputfile);
@@ -67,8 +68,9 @@ int main(int argc, char *argv[]){
       int buff_len;
       unsigned char output[1024],data[1024];
       while ((buff_len = read(inputfile,data,sizeof(data))) > 0);
-      base64_encode(data, output, strlen((char*)data),0,76);
+      encode(data, output, strlen((char*)data),0,76);
       printf(1,"%s\n",output);
       close(inputfile);
       exit();
+}
 }
