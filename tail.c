@@ -2,9 +2,10 @@
 #include "stat.h"
 #include "user.h"
 
-char buffer[1000];
-char buffer2[1000];
+char buffer[1000]; //Inisialisasi buffer 1
+char buffer2[1000]; //Inisialisasi buffer 2
 
+//Fungsi tail
 void tail(int fd,char *name, int x){
     int i, n, m, l;
     int total_lines = 0;
@@ -13,7 +14,7 @@ void tail(int fd,char *name, int x){
         for(i=0;i<=n;i++){
             if (buffer[i]=='\n')
             {
-                total_lines++;
+                total_lines++; // Loop untuk total line di dalam file
                 
                 if(strcmp(name,"")==0){
                     printf(1, "\n");
@@ -21,7 +22,7 @@ void tail(int fd,char *name, int x){
 
                 else {
                     if(strcmp(name,"")==0){
-                        if (buffer[i]=='\0') exit();
+                        if (buffer[i]=='\0') exit(); // Cek file akhir
                         if (buffer[i]=='\n') printf(1, "%c", buffer[i]);
                         else printf (1,"\n");
                     }
@@ -34,7 +35,7 @@ void tail(int fd,char *name, int x){
     start=total_lines-x;
     l=0;
 
-    int fd2 = open(name,0);
+    int fd2 = open(name,0); //Buat file deskriptor 2
     while((m=read(fd2, buffer2, sizeof (buffer2)))>0){
         for(i=0;i<=m;i++){
             if(buffer2[i]=='\n') l++;
@@ -49,6 +50,7 @@ void tail(int fd,char *name, int x){
     }
     close(fd2);
 
+    //Error cek
     if(n<0){
         printf(1, "Tail: Error while reading\n");
         exit();
