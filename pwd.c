@@ -9,7 +9,7 @@ int main( int argc, char *argv[]){
 	
 	int n = read(current, pwd, sizeof(pwd));
 	if (n > 0){
-		printf(1, "%s\n", pwd[0]);
+		printf(1, "%s\n", pwd);
 		exit();
 	}
 	else if (n < 0){
